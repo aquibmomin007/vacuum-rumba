@@ -1,100 +1,144 @@
 import { Box, Grid, Paper } from '@mui/material';
 import classnames from 'classnames';
-import React, { useCallback, useRef, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
-import { TVacuumPosition } from '../Pages/VacuumPage';
+import { CommonColors, PLAYGROUND_BOX_WIDTH } from '../constants';
+import { TPlaygroundProps } from '../types';
 
 const useStyles = createUseStyles({
     
     playgroundBase: {
         height: '800px',
         width: '100%',
-        background: '#a2cf6e',
+        background: 'transparent',
         position: 'relative'
     },
-    horizantalDivider: {
-        width: '100%',
-        height: '1px',
-        background: 'grey',
-        position: 'absolute',
-        left: '0',
-        right: '0'
-    },
-    verticalDivider: {
-        width: '1px',
-        height: '100%',
-        background: 'grey',
-        position: 'absolute',
-        top: '0',
-        bottom: '0'
-    },
     playgroundBox: {
-        background: 'rgba(164,255,164,0.6)',
-        border: '1px solid grey',
+        background: CommonColors.mild,
+        border: `1px solid ${CommonColors.text}`,
         position: 'relative'
     },
     playgroundBoxText: {
         position: 'absolute',
-        top: '5px',
-        right: '5px'
+        top: '3px',
+        right: '3px',
+        fontSize: '12px',
+        color: CommonColors.text
+    },
+    compassLabel: {
+        position: 'absolute',
+        fontSize: '25px',
+        fontWeight: 'bold',
+        color: '#e8e5d4',
+        width: '25px',
+        height: '25px',
+        textAlign: 'center',
+        margin: 'auto',
+        
+        '&.north': {
+            left: 0,
+            right: 0,
+            top: '-35px'
+        },
+        '&.south': {
+            left: 0,
+            right: 0,
+            bottom: '-35px'
+        },
+        '&.east': {
+            top: 0,
+            bottom: 0,
+            right: '-35px'
+        },
+        '&.west': {
+            top: 0,
+            bottom: 0,
+            left: '-35px'
+        }
     },
     vacuumBlock: {
-        width: '156px',
-        height: '156px',
+        width: `${PLAYGROUND_BOX_WIDTH}px`,
+        height: `${PLAYGROUND_BOX_WIDTH}px`,
         borderRadius: '50%',
-        border: '5px solid #787F84',
+        border: `5px solid ${CommonColors.dark}`,
         position: 'absolute',
-        background: '#E6B703',
+        background: CommonColors.light,
         boxSizing: 'border-box',
+        transition: 'left 1s linear, top 1s linear',
+        
 
         '& .direction-bar': {
+            background: CommonColors.dark,
+            position: 'absolute',
+            margin: 'auto',
+
+            '& .circle': {
+                width: '15px',
+                height: '15px',
+                background: CommonColors.dark,
+                borderRadius: '50%',
+                position: 'absolute',
+            },
+
             '&.north': {
-                top: '5px',
+                top: '25px',
                 left: '0',
                 right: '0',
                 width: '5px',
                 height: '50px',
+
+                '& .circle': {
+                    left: '-5px',
+                    top: '-20px',
+                }
             },
 
             '&.south': {
-                bottom: '5px',
+                bottom: '25px',
                 left: '0',
                 right: '0',
                 width: '5px',
                 height: '50px',
+
+                '& .circle': {
+                    left: '-5px',
+                    bottom: '-20px',
+                }
             },
 
             '&.east': {
                 top: '0',
-                right: '5px',
+                right: '25px',
                 bottom: '0',
                 height: '5px',
                 width: '50px',
+
+                '& .circle': {
+                    right: '-20px',
+                    top: '-5px',
+                }
             },
 
             '&.west': {
                 top: '0',
-                left: '5px',
+                left: '25px',
                 bottom: '0',
                 height: '5px',
                 width: '50px',
+
+                '& .circle': {
+                    left: '-20px',
+                    top: '-5px',
+                }
             },
 
-            background: '#787F84',
-            position: 'absolute',
-            margin: 'auto'
+            
         }
     }
   })
 
-type PlaygroundProps = {
-    roomHeight: number;
-    roomWidth: number;
-    vacuumPosition: TVacuumPosition;
-}
-
-export const Playground = (props: PlaygroundProps) => {
+export const Playground = (props: TPlaygroundProps) => {
     const { roomHeight, roomWidth, vacuumPosition } = props;
     const classes = useStyles();
     const [showVacuum, setShowVacuum ] = useState<boolean>(false);
@@ -109,8 +153,8 @@ export const Playground = (props: PlaygroundProps) => {
             const currentXValue = !!vacuumPosition['placeY'] ? vacuumPosition['placeY']:0;
             const currentYValue = !!vacuumPosition['placeX'] ? vacuumPosition['placeX']:0;
             
-            setVacuumX(156 * (currentXValue) + currentXValue);
-            setVacuumY(160 * (currentYValue) + currentYValue);
+            setVacuumX(PLAYGROUND_BOX_WIDTH * (currentXValue));
+            setVacuumY(PLAYGROUND_BOX_WIDTH * (currentYValue));
         }
         else{
             setShowVacuum(false)
@@ -120,18 +164,16 @@ export const Playground = (props: PlaygroundProps) => {
         }
     }, [vacuumPosition])
 
-    console.log({vacuumX, vacuumY})
-
     const plotBoxes = useCallback(() => {
         const wNum = new Array(roomWidth).fill(0);
         const hNum = new Array(roomHeight).fill(0);
-        const divVal = 100/hNum.length;
         
-        return hNum.map((item, i) => {
-            return wNum.map((item, j) => {
+        return hNum.map((_i, i) => {
+            return wNum.map((_j, j) => {
                 return (
                     <Grid 
-                        item 
+                        item
+                        key={`(${i},${j})`}
                         className={classes.playgroundBox}
                         sx={{
                             flex: `1 1 ${100/roomWidth}%`,
@@ -139,15 +181,13 @@ export const Playground = (props: PlaygroundProps) => {
                         }}
                     >
                         <span className={classes.playgroundBoxText}>
-                            {`( ${i}, ${j})`}
+                            {`(${i},${j})`}
                         </span>
                     </Grid>
                 )
             })
         })
-    }, [roomWidth, roomHeight])
-
-    console.log({vacuumDirection, a1: !!vacuumDirection})
+    }, [roomWidth, roomHeight, classes])
     
     return (
         <Paper className={classes.playgroundBase} variant="outlined">
@@ -169,10 +209,16 @@ export const Playground = (props: PlaygroundProps) => {
                             top: `${vacuumY}px`,
                         }}
                     >
-                        <span className={`direction-bar ${vacuumDirection}`}></span>
+                        <span className={`direction-bar ${vacuumDirection}`}>
+                            <span className={`circle`}></span>
+                        </span>
                     </div>
                 )}
             </Box>
+            <span className={classnames(classes.compassLabel, 'north')}>N</span>
+            <span className={classnames(classes.compassLabel, 'south')}>S</span>
+            <span className={classnames(classes.compassLabel, 'east')}>E</span>
+            <span className={classnames(classes.compassLabel, 'west')}>W</span>
         </Paper>
     )
 }
