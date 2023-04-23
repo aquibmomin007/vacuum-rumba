@@ -13,7 +13,7 @@ const useStyles = createUseStyles({
 const PLAYGROUND_HEIGHT = 5;
 const PLAYGROUND_WIDTH = 5;
 
-export type TVaccumPosition = {
+export type TVacuumPosition = {
     placeX: number | null;
     placeY: number | null;
     direction: string;
@@ -25,9 +25,9 @@ const INITIAL_VALUES = {
     direction: ''
 }
 
-export const VaccumPage = () => {
+export const VacuumPage = () => {
     const classes = useStyles();
-    const [currentPosition, setCurrentPosition] = useState<TVaccumPosition>(INITIAL_VALUES);
+    const [currentPosition, setCurrentPosition] = useState<TVacuumPosition>(INITIAL_VALUES);
     console.log({currentPosition})
     return (
         <Grid 
@@ -49,7 +49,7 @@ export const VaccumPage = () => {
                 <Playground
                     roomHeight={PLAYGROUND_HEIGHT} 
                     roomWidth={PLAYGROUND_WIDTH}
-                    vaccumPosition={currentPosition}
+                    vacuumPosition={currentPosition}
                 />
             </Grid>
             <Grid 
@@ -59,10 +59,10 @@ export const VaccumPage = () => {
                 item
             >
                 <ActionBar 
-                    vaccumPosition={currentPosition}
+                    vacuumPosition={currentPosition}
                     roomHeight={PLAYGROUND_HEIGHT} 
                     roomWidth={PLAYGROUND_WIDTH}
-                    setVaccumPosition={setCurrentPosition}
+                    setVacuumPosition={setCurrentPosition}
                     initialValues={INITIAL_VALUES}
                 />
             </Grid>

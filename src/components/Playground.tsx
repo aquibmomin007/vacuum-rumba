@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import React, { useCallback, useRef, useState } from 'react';
 import { useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
-import { TVaccumPosition } from '../Pages/VaccumPage';
+import { TVacuumPosition } from '../Pages/VacuumPage';
 
 const useStyles = createUseStyles({
     
@@ -39,7 +39,7 @@ const useStyles = createUseStyles({
         top: '5px',
         right: '5px'
     },
-    vaccumBlock: {
+    vacuumBlock: {
         width: '156px',
         height: '156px',
         borderRadius: '50%',
@@ -91,36 +91,36 @@ const useStyles = createUseStyles({
 type PlaygroundProps = {
     roomHeight: number;
     roomWidth: number;
-    vaccumPosition: TVaccumPosition;
+    vacuumPosition: TVacuumPosition;
 }
 
 export const Playground = (props: PlaygroundProps) => {
-    const { roomHeight, roomWidth, vaccumPosition } = props;
+    const { roomHeight, roomWidth, vacuumPosition } = props;
     const classes = useStyles();
-    const [showVaccum, setShowVaccum ] = useState<boolean>(false);
-    const [vaccumDirection, setVaccumDirection] = useState<null | string>(null);
-    const [vaccumX, setVaccumX] = useState<null | number>(null);
-    const [vaccumY, setVaccumY] = useState<null | number>(null);
+    const [showVacuum, setShowVacuum ] = useState<boolean>(false);
+    const [vacuumDirection, setVacuumDirection] = useState<null | string>(null);
+    const [vacuumX, setVacuumX] = useState<null | number>(null);
+    const [vacuumY, setVacuumY] = useState<null | number>(null);
 
     useEffect(() => {
-        if((vaccumPosition['placeX'] !== null) && (vaccumPosition['placeY'] !== null) && (vaccumPosition['direction'] !== null)){
-            setShowVaccum(true)
-            setVaccumDirection(vaccumPosition['direction'].toLowerCase())
-            const currentXValue = !!vaccumPosition['placeY'] ? vaccumPosition['placeY']:0;
-            const currentYValue = !!vaccumPosition['placeX'] ? vaccumPosition['placeX']:0;
+        if((vacuumPosition['placeX'] !== null) && (vacuumPosition['placeY'] !== null) && (vacuumPosition['direction'] !== null)){
+            setShowVacuum(true)
+            setVacuumDirection(vacuumPosition['direction'].toLowerCase())
+            const currentXValue = !!vacuumPosition['placeY'] ? vacuumPosition['placeY']:0;
+            const currentYValue = !!vacuumPosition['placeX'] ? vacuumPosition['placeX']:0;
             
-            setVaccumX(156 * (currentXValue) + currentXValue);
-            setVaccumY(160 * (currentYValue) + currentYValue);
+            setVacuumX(156 * (currentXValue) + currentXValue);
+            setVacuumY(160 * (currentYValue) + currentYValue);
         }
         else{
-            setShowVaccum(false)
-            setVaccumDirection(null)
-            setVaccumX(null)
-            setVaccumY(null)
+            setShowVacuum(false)
+            setVacuumDirection(null)
+            setVacuumX(null)
+            setVacuumY(null)
         }
-    }, [vaccumPosition])
+    }, [vacuumPosition])
 
-    console.log({vaccumX, vaccumY})
+    console.log({vacuumX, vacuumY})
 
     const plotBoxes = useCallback(() => {
         const wNum = new Array(roomWidth).fill(0);
@@ -147,7 +147,7 @@ export const Playground = (props: PlaygroundProps) => {
         })
     }, [roomWidth, roomHeight])
 
-    console.log({vaccumDirection, a1: !!vaccumDirection})
+    console.log({vacuumDirection, a1: !!vacuumDirection})
     
     return (
         <Paper className={classes.playgroundBase} variant="outlined">
@@ -161,15 +161,15 @@ export const Playground = (props: PlaygroundProps) => {
                   }}
             >
                 {plotBoxes()}
-                {showVaccum && (
+                {showVacuum && (
                     <div 
-                        className={classes.vaccumBlock}
+                        className={classes.vacuumBlock}
                         style={{
-                            left: `${vaccumX}px`,
-                            top: `${vaccumY}px`,
+                            left: `${vacuumX}px`,
+                            top: `${vacuumY}px`,
                         }}
                     >
-                        <span className={`direction-bar ${vaccumDirection}`}></span>
+                        <span className={`direction-bar ${vacuumDirection}`}></span>
                     </div>
                 )}
             </Box>

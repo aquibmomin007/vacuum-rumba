@@ -1,7 +1,7 @@
 import React, { Dispatch, FormEvent, SetStateAction, useCallback, useState } from 'react';
 import { Box, Button, FormControl, InputLabel, MenuItem, Paper, Typography,  } from '@mui/material';
 import { createUseStyles } from 'react-jss';
-import { TVaccumPosition } from '../Pages/VaccumPage';
+import { TVacuumPosition } from '../Pages/VacuumPage';
 import { Form } from 'react-final-form';
 import { Select, TextField } from 'mui-rff';
 import TurnLeftIcon from '@mui/icons-material/TurnLeft';
@@ -21,9 +21,9 @@ const useStyles = createUseStyles({
   })
 
 type ActionBarProps = {
-    vaccumPosition: TVaccumPosition;
-    setVaccumPosition: Dispatch<SetStateAction<TVaccumPosition>>;
-    initialValues: TVaccumPosition;
+    vacuumPosition: TVacuumPosition;
+    setVacuumPosition: Dispatch<SetStateAction<TVacuumPosition>>;
+    initialValues: TVacuumPosition;
     roomHeight: number;
     roomWidth: number;
 }
@@ -50,80 +50,80 @@ const DIRECTION_LOGIC: {[key:string]: {[key:string]: string}} = {
 
 export const ActionBar = (props: ActionBarProps) => {
     const classes = useStyles();
-    const { vaccumPosition, setVaccumPosition, initialValues, roomHeight, roomWidth } = props;
+    const { vacuumPosition, setVacuumPosition, initialValues, roomHeight, roomWidth } = props;
     const [errorPlaceValue, setErrorPlaceValue] = useState<string>('');
-    const [submittedValues, setSubmittedValues] = useState<TVaccumPosition | undefined>(undefined);
+    const [submittedValues, setSubmittedValues] = useState<TVacuumPosition | undefined>(undefined);
     
-    const onSubmit = (values: TVaccumPosition) => {
+    const onSubmit = (values: TVacuumPosition) => {
         const directionValues = {
             direction: !!values.direction ? (values.direction).toLowerCase():'',
             placeX:  !!values.placeX ? +values.placeX:null,
             placeY:  !!values.placeY ? +values.placeY:null
         }
         setSubmittedValues(values);
-        setVaccumPosition(directionValues); 
+        setVacuumPosition(directionValues); 
     }
 
     const onMove = useCallback(() => {
-        const currentDirection = vaccumPosition['direction'];
+        const currentDirection = vacuumPosition['direction'];
         if(currentDirection === 'north'){
-            const nextPos = (vaccumPosition.placeX !== null) ? vaccumPosition.placeX - 1:null;
+            const nextPos = (vacuumPosition.placeX !== null) ? vacuumPosition.placeX - 1:null;
             console.log('north', {nextPos})
             if(nextPos !== null && nextPos >= 0){
                 const newDirectionValues = {
-                    ...vaccumPosition,
+                    ...vacuumPosition,
                     placeX: nextPos
                 }
-                setVaccumPosition(newDirectionValues); 
+                setVacuumPosition(newDirectionValues); 
             }
         }
 
         if(currentDirection === 'south'){
-            const nextPos = (vaccumPosition.placeX !== null) ? vaccumPosition.placeX + 1:null;
+            const nextPos = (vacuumPosition.placeX !== null) ? vacuumPosition.placeX + 1:null;
             console.log('south', {nextPos})
             if(nextPos !== null && nextPos < roomHeight){
                 const newDirectionValues = {
-                    ...vaccumPosition,
+                    ...vacuumPosition,
                     placeX: nextPos
                 }
-                setVaccumPosition(newDirectionValues); 
+                setVacuumPosition(newDirectionValues); 
             }
         }
 
         if(currentDirection === 'west'){
-            const nextPos = (vaccumPosition.placeY !== null) ? vaccumPosition.placeY - 1:null;
+            const nextPos = (vacuumPosition.placeY !== null) ? vacuumPosition.placeY - 1:null;
             console.log('west', {nextPos})
             if(nextPos !== null && nextPos >= 0){
                 const newDirectionValues = {
-                    ...vaccumPosition,
+                    ...vacuumPosition,
                     placeY: nextPos
                 }
-                setVaccumPosition(newDirectionValues); 
+                setVacuumPosition(newDirectionValues); 
             }
         }
 
         if(currentDirection === 'east'){
-            const nextPos = (vaccumPosition.placeY !== null) ? vaccumPosition.placeY + 1:null;
+            const nextPos = (vacuumPosition.placeY !== null) ? vacuumPosition.placeY + 1:null;
             console.log('east', {nextPos})
             if(nextPos !== null && nextPos < roomWidth){
                 const newDirectionValues = {
-                    ...vaccumPosition,
+                    ...vacuumPosition,
                     placeY: nextPos
                 }
-                setVaccumPosition(newDirectionValues); 
+                setVacuumPosition(newDirectionValues); 
             }
         }
         
-    }, [vaccumPosition]);
+    }, [vacuumPosition]);
 
     const onDirectionChange = useCallback((direction: string) => {
-        const newDirection  = DIRECTION_LOGIC[vaccumPosition['direction']][direction]
+        const newDirection  = DIRECTION_LOGIC[vacuumPosition['direction']][direction]
         const newDirectionValues = {
-            ...vaccumPosition,
+            ...vacuumPosition,
             direction: newDirection
         }
-        setVaccumPosition(newDirectionValues); 
-    }, [vaccumPosition]);
+        setVacuumPosition(newDirectionValues); 
+    }, [vacuumPosition]);
 
     return (
         <Paper className={classes.actionBase} variant="outlined">
@@ -177,7 +177,7 @@ export const ActionBar = (props: ActionBarProps) => {
                                 disabled={invalid || submitting}
                                 sx={{ mt: '1rem' }}
                             >
-                                Place Vaccum
+                                Place Vacuum
                             </Button>
                         </form>
                     )}}
@@ -193,7 +193,7 @@ export const ActionBar = (props: ActionBarProps) => {
                 }}
             >
                 <Typography variant="h5" gutterBottom>
-                    Vaccum Navigation
+                    Vacuum Navigation
                 </Typography>
                 <Button
                     variant="contained"

@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import { VaccumPage } from './Pages/VaccumPage';
+import { VacuumPage } from './Pages/VacuumPage';
 
 function App() {
   return (
     <div className="App">
-      <VaccumPage />
+      <VacuumPage />
     </div>
   );
 }
