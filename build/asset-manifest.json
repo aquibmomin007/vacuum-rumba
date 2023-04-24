@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/vacuum-rumba/static/css/main.2b07beca.css",
-    "main.js": "/vacuum-rumba/static/js/main.cac820b3.js",
+    "main.css": "/vacuum-rumba/static/css/main.478cf3e5.css",
+    "main.js": "/vacuum-rumba/static/js/main.4a06ff7e.js",
     "static/js/651.1275ba4a.chunk.js": "/vacuum-rumba/static/js/651.1275ba4a.chunk.js",
     "index.html": "/vacuum-rumba/index.html",
-    "main.2b07beca.css.map": "/vacuum-rumba/static/css/main.2b07beca.css.map",
-    "main.cac820b3.js.map": "/vacuum-rumba/static/js/main.cac820b3.js.map",
+    "main.478cf3e5.css.map": "/vacuum-rumba/static/css/main.478cf3e5.css.map",
+    "main.4a06ff7e.js.map": "/vacuum-rumba/static/js/main.4a06ff7e.js.map",
     "651.1275ba4a.chunk.js.map": "/vacuum-rumba/static/js/651.1275ba4a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2b07beca.css",
-    "static/js/main.cac820b3.js"
+    "static/css/main.478cf3e5.css",
+    "static/js/main.4a06ff7e.js"
   ]
 }
