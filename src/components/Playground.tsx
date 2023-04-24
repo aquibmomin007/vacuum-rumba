@@ -30,7 +30,7 @@ const useStyles = createUseStyles({
         position: 'absolute',
         fontSize: '25px',
         fontWeight: 'bold',
-        color: '#e8e5d4',
+        color: CommonColors.textLight,
         width: '25px',
         height: '25px',
         textAlign: 'center',
@@ -63,19 +63,34 @@ const useStyles = createUseStyles({
         borderRadius: '50%',
         border: `5px solid ${CommonColors.dark}`,
         position: 'absolute',
-        background: CommonColors.light,
+        background: CommonColors.vacuumBg,
         boxSizing: 'border-box',
-        transition: 'left 1s linear, top 1s linear',
+        transition: 'left 0.5s linear, top 0.5s linear',
         
+        '&.vacuum-shake': {
+            'animation': 'shake 0.82s cubic-bezier(.36,.07,.19,.97) both',
+            'transform': 'translate3d(0, 0, 0)',
+            'backfaceVisibility': 'hidden',
+            'perspective': '1000px',
+            border: `5px solid ${CommonColors.errorBorder}`,
+
+            '& .direction-bar': {
+                background: CommonColors.errorBorder,
+                '& .circle': {
+                    background: CommonColors.errorBorder,
+                },
+            }
+        },
 
         '& .direction-bar': {
             background: CommonColors.dark,
             position: 'absolute',
             margin: 'auto',
+            borderRadius: '5px',
 
             '& .circle': {
-                width: '15px',
-                height: '15px',
+                width: '12px',
+                height: '12px',
                 background: CommonColors.dark,
                 borderRadius: '50%',
                 position: 'absolute',
@@ -89,7 +104,7 @@ const useStyles = createUseStyles({
                 height: '50px',
 
                 '& .circle': {
-                    left: '-5px',
+                    left: '-4px',
                     top: '-20px',
                 }
             },
@@ -102,7 +117,7 @@ const useStyles = createUseStyles({
                 height: '50px',
 
                 '& .circle': {
-                    left: '-5px',
+                    left: '-4px',
                     bottom: '-20px',
                 }
             },
@@ -116,7 +131,7 @@ const useStyles = createUseStyles({
 
                 '& .circle': {
                     right: '-20px',
-                    top: '-5px',
+                    top: '-4px',
                 }
             },
 
@@ -129,17 +144,15 @@ const useStyles = createUseStyles({
 
                 '& .circle': {
                     left: '-20px',
-                    top: '-5px',
+                    top: '-4px',
                 }
-            },
-
-            
+            }
         }
     }
   })
 
 export const Playground = (props: TPlaygroundProps) => {
-    const { roomHeight, roomWidth, vacuumPosition } = props;
+    const { roomHeight, roomWidth, vacuumPosition, isEdgeError } = props;
     const classes = useStyles();
     const [showVacuum, setShowVacuum ] = useState<boolean>(false);
     const [vacuumDirection, setVacuumDirection] = useState<null | string>(null);
@@ -150,9 +163,8 @@ export const Playground = (props: TPlaygroundProps) => {
         if((vacuumPosition['placeX'] !== null) && (vacuumPosition['placeY'] !== null) && (vacuumPosition['direction'] !== null)){
             setShowVacuum(true)
             setVacuumDirection(vacuumPosition['direction'].toLowerCase())
-            const currentXValue = !!vacuumPosition['placeY'] ? vacuumPosition['placeY']:0;
-            const currentYValue = !!vacuumPosition['placeX'] ? vacuumPosition['placeX']:0;
-            
+            const currentXValue = vacuumPosition['placeX'] !== null ? (vacuumPosition['placeX']):0;
+            const currentYValue = vacuumPosition['placeY'] !== null ? (roomHeight - vacuumPosition['placeY'] - 1):0;
             setVacuumX(PLAYGROUND_BOX_WIDTH * (currentXValue));
             setVacuumY(PLAYGROUND_BOX_WIDTH * (currentYValue));
         }
@@ -162,7 +174,7 @@ export const Playground = (props: TPlaygroundProps) => {
             setVacuumX(null)
             setVacuumY(null)
         }
-    }, [vacuumPosition])
+    }, [vacuumPosition, roomWidth, roomHeight])
 
     const plotBoxes = useCallback(() => {
         const wNum = new Array(roomWidth).fill(0);
@@ -196,14 +208,14 @@ export const Playground = (props: TPlaygroundProps) => {
                     display: 'flex',
                     flexWrap: 'wrap',
                     alignContent: 'stretch',
-                    flexFlow: 'row wrap',
+                    flexDirection: 'column-reverse',
                     height: '100%'
                   }}
             >
                 {plotBoxes()}
                 {showVacuum && (
                     <div 
-                        className={classes.vacuumBlock}
+                        className={classnames(classes.vacuumBlock, { 'vacuum-shake':isEdgeError })}
                         style={{
                             left: `${vacuumX}px`,
                             top: `${vacuumY}px`,

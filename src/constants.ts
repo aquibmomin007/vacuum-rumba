@@ -1,23 +1,18 @@
 import { EDirection, EDirectionLogic, ERotation } from "./types";
 
 export const CommonColors = {
+    white: '#ffffff',
+    textLight: '#e8e5d4',
     text: '#405955',
     mild: '#c3d6d2',
-    light: '#f2c7b6',
+    light: '#ef8c86',
     semiDark: '#508a7c',
-    vacuumBg: '#508a7c',
+    vacuumBg: '#8ebba7',
     dark: '#405955',
+    errorBorder: '#e94c42'
 } 
 
 export const DIRECTION_LIST = [
-    {
-        value: EDirection.north,
-        label: 'North'
-    },
-    {
-        value: EDirection.south,
-        label: 'South'
-    },
     {
         value: EDirection.east,
         label: 'East'
@@ -25,6 +20,14 @@ export const DIRECTION_LIST = [
     {
         value: EDirection.west,
         label: 'West'
+    },
+    {
+        value: EDirection.north,
+        label: 'North'
+    },
+    {
+        value: EDirection.south,
+        label: 'South'
     }
 ];
 

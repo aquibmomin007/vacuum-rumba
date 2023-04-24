@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { ActionBar } from '../components/ActionBar';
 import { Playground } from '../components/Playground';
@@ -15,6 +15,16 @@ const useStyles = createUseStyles({
 export const VacuumPage = () => {
     const classes = useStyles();
     const [currentPosition, setCurrentPosition] = useState<TVacuumPosition>(INITIAL_VALUES);
+    const [reachedEdge, setReachedEdge] = useState<boolean>(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            if(reachedEdge){
+                setReachedEdge(false)
+            }
+        }, 1000)
+        
+    }, [reachedEdge])
     
     return (
         <Grid 
@@ -36,6 +46,7 @@ export const VacuumPage = () => {
                     roomHeight={PLAYGROUND_HEIGHT} 
                     roomWidth={PLAYGROUND_WIDTH}
                     vacuumPosition={currentPosition}
+                    isEdgeError={reachedEdge}
                 />
             </Grid>
             <Grid 
@@ -51,6 +62,7 @@ export const VacuumPage = () => {
                     roomWidth={PLAYGROUND_WIDTH}
                     onChangeVacuumPosition={setCurrentPosition}
                     initialValues={INITIAL_VALUES}
+                    onReachedEdge={setReachedEdge}
                 />
             </Grid>
         </Grid>

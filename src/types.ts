@@ -3,6 +3,7 @@ export type TPlaygroundProps = {
     roomHeight: number;
     roomWidth: number;
     vacuumPosition: TVacuumPosition;
+    isEdgeError: boolean;
 }
 
 export type TVacuumPosition = {
@@ -15,9 +16,16 @@ export type TVacuumPosition = {
 export type TActionBarProps = {
     vacuumPosition: TVacuumPosition;
     onChangeVacuumPosition: (v: TVacuumPosition) => void;
+    onReachedEdge: (v: boolean) => void;
     initialValues: TVacuumPosition;
     roomHeight: number;
     roomWidth: number;
+}
+
+export interface ReportDialogProps {
+    open: boolean;
+    vacuumData: TVacuumPosition;
+    handleClose: (v: boolean) => void;
 }
 
 export type EDirectionLogic = Partial<Record<EDirection, {
