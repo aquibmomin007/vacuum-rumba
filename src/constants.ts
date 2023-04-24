@@ -50,9 +50,10 @@ export const DIRECTION_LOGIC: EDirectionLogic = {
     }
 }
 
-export const PLAYGROUND_HEIGHT = 5;
-export const PLAYGROUND_WIDTH = 5;
-export const PLAYGROUND_BOX_WIDTH = 800/5;
+export const PLAYGROUND_WIDTH = 600;
+export const PLAYGROUND_VERTICAL_BLOCK = 5;
+export const PLAYGROUND_HORIZANTAL_BLOCK = 5;
+export const PLAYGROUND_BOX_WIDTH = PLAYGROUND_WIDTH/PLAYGROUND_HORIZANTAL_BLOCK;
 
 export const INITIAL_VALUES = {
     placeX: null,

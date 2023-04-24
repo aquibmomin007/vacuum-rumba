@@ -3,13 +3,13 @@ import classnames from 'classnames';
 import { useCallback, useState } from 'react';
 import { useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
-import { CommonColors, PLAYGROUND_BOX_WIDTH } from '../constants';
+import { CommonColors, PLAYGROUND_BOX_WIDTH, PLAYGROUND_WIDTH } from '../constants';
 import { TPlaygroundProps } from '../types';
 
 const useStyles = createUseStyles({
     
     playgroundBase: {
-        height: '800px',
+        height: `${PLAYGROUND_WIDTH}px`,
         width: '100%',
         background: 'transparent',
         position: 'relative'
@@ -89,62 +89,62 @@ const useStyles = createUseStyles({
             borderRadius: '5px',
 
             '& .circle': {
-                width: '12px',
-                height: '12px',
+                width: '10px',
+                height: '10px',
                 background: CommonColors.dark,
                 borderRadius: '50%',
                 position: 'absolute',
             },
 
             '&.north': {
-                top: '25px',
+                top: '20px',
                 left: '0',
                 right: '0',
                 width: '5px',
-                height: '50px',
+                height: '35px',
 
                 '& .circle': {
-                    left: '-4px',
-                    top: '-20px',
+                    left: '-3px',
+                    top: '-15px',
                 }
             },
 
             '&.south': {
-                bottom: '25px',
+                bottom: '20px',
                 left: '0',
                 right: '0',
                 width: '5px',
-                height: '50px',
+                height: '35px',
 
                 '& .circle': {
-                    left: '-4px',
-                    bottom: '-20px',
+                    left: '-3px',
+                    bottom: '-15px',
                 }
             },
 
             '&.east': {
                 top: '0',
-                right: '25px',
+                right: '20px',
                 bottom: '0',
                 height: '5px',
-                width: '50px',
+                width: '35px',
 
                 '& .circle': {
-                    right: '-20px',
-                    top: '-4px',
+                    right: '-15px',
+                    top: '-3px',
                 }
             },
 
             '&.west': {
                 top: '0',
-                left: '25px',
+                left: '20px',
                 bottom: '0',
                 height: '5px',
-                width: '50px',
+                width: '35px',
 
                 '& .circle': {
-                    left: '-20px',
-                    top: '-4px',
+                    left: '-15px',
+                    top: '-3px',
                 }
             }
         }

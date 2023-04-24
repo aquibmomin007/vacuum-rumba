@@ -8,7 +8,7 @@ import TurnRightIcon from '@mui/icons-material/TurnRight';
 import LoadingButton from '@mui/lab/LoadingButton';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import { EDirection, ERotation, TActionBarProps, TVacuumPosition } from '../types';
-import { DIRECTION_LOGIC, DIRECTION_LIST, CommonColors, INITIAL_VALUES } from '../constants';
+import { DIRECTION_LOGIC, DIRECTION_LIST, CommonColors, INITIAL_VALUES, PLAYGROUND_WIDTH } from '../constants';
 import { makeValidate } from 'mui-rff';
 import * as Yup from 'yup';
 import { FormApi } from 'final-form';
@@ -17,7 +17,7 @@ import { ReportDialog } from './ReportDialog';
 
 const useStyles = createUseStyles({
     actionBase: {
-        height: '800px',
+        height: `${PLAYGROUND_WIDTH}px`,
         width: '100%',
         background: CommonColors.mild,
         position: 'relative',
@@ -74,8 +74,8 @@ export const ActionBar = (props: TActionBarProps) => {
             variant: 'error',
             autoHideDuration: 3000,
             anchorOrigin: {
-                horizontal: 'center',
-                vertical: 'top'
+                horizontal: 'right',
+                vertical: 'bottom'
             }
         });
         onReachedEdge(true)
@@ -176,7 +176,7 @@ export const ActionBar = (props: TActionBarProps) => {
     return (
             <Paper className={classes.actionBase} variant="outlined">
                 <Box
-                    py={3}
+                    pt={2}
                     sx={{
                         '& .MuiTextField-root': { 
                             mb: 2,
@@ -218,7 +218,7 @@ export const ActionBar = (props: TActionBarProps) => {
                         
                     }}
                 >
-                    <Typography variant="h5" gutterBottom>
+                    <Typography variant="h6" gutterBottom>
                         Remote Control
                     </Typography>
                     <Form
@@ -316,8 +316,8 @@ export const ActionBar = (props: TActionBarProps) => {
                     />
                 </Box>
                 <Box
-                    py={4}
-                    mt={2}
+                    pt={1}
+                    mt={1}
                     sx={{
                         '& .MuiTextField-root': { 
                             mb: 2,
@@ -327,7 +327,7 @@ export const ActionBar = (props: TActionBarProps) => {
                         }
                     }}
                 >
-                    <Typography variant="h5" gutterBottom>
+                    <Typography variant="h6" gutterBottom>
                         Vacuum Navigation
                     </Typography>
                     <div className={classes.formWrapper}> 

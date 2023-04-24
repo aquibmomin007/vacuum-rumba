@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { ActionBar } from '../components/ActionBar';
 import { Playground } from '../components/Playground';
-import { INITIAL_VALUES, PLAYGROUND_HEIGHT, PLAYGROUND_WIDTH } from '../constants';
+import { INITIAL_VALUES, PLAYGROUND_HORIZANTAL_BLOCK, PLAYGROUND_VERTICAL_BLOCK, PLAYGROUND_WIDTH} from '../constants';
 import { TVacuumPosition } from '../types';
 
 const useStyles = createUseStyles({
@@ -34,17 +34,17 @@ export const VacuumPage = () => {
             direction="row"
             justifyContent="center"
             alignItems="center"
-            height={'100vh'}
+            height="auto"
             className={classes.gridWrapper}
         >
             <Grid sx={{
-                    width: '800px'
+                    width: `${PLAYGROUND_WIDTH}px`
                 }} 
                 item
             >
                 <Playground
-                    roomHeight={PLAYGROUND_HEIGHT} 
-                    roomWidth={PLAYGROUND_WIDTH}
+                    roomHeight={PLAYGROUND_VERTICAL_BLOCK} 
+                    roomWidth={PLAYGROUND_HORIZANTAL_BLOCK}
                     vacuumPosition={currentPosition}
                     isEdgeError={reachedEdge}
                 />
@@ -58,8 +58,8 @@ export const VacuumPage = () => {
             >
                 <ActionBar 
                     vacuumPosition={currentPosition}
-                    roomHeight={PLAYGROUND_HEIGHT} 
-                    roomWidth={PLAYGROUND_WIDTH}
+                    roomHeight={PLAYGROUND_VERTICAL_BLOCK} 
+                    roomWidth={PLAYGROUND_HORIZANTAL_BLOCK}
                     onChangeVacuumPosition={setCurrentPosition}
                     initialValues={INITIAL_VALUES}
                     onReachedEdge={setReachedEdge}
