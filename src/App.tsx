@@ -1,5 +1,5 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { VacuumPage } from './Pages/VacuumPage';
+import { VacuumPage } from './pages/VacuumPage';
 import { CommonColors } from './constants';
 import { SnackbarProvider } from 'notistack';
 
