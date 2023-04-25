@@ -4,7 +4,7 @@
 ## CRA
 [Create React App](https://github.com/facebook/create-react-app) is used to create this Vacuum Rumba App.
 
-#@ Additional Setup
+# Additional Setup
 * Typescript support added
 * React-JSS is used for styling
 * Material UI library is used for Layout and Icons.
