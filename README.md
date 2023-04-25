@@ -1,4 +1,6 @@
-# Vacuum Rumba App
+<h1 align="center">Welcome to readme-md-generator 👋</h1>
+
+# CRA
 [Create React App](https://github.com/facebook/create-react-app) is used to create this Vacuum Rumba App.
 
 # Additional Setup
@@ -48,11 +50,8 @@ npm run test
 or 
 yarn test
 ```
-- Local access URL
-```bash
+### Local access URL
 [Local URL](http://localhost:3000/vacuum-rumba) http://localhost:3000/vacuum-rumba
-```
-- Alternatively, I have also deployed the app to Github pages
-```bash
+
+### Alternatively, I have also deployed the app to Github pages
 [Git Page URL](https://aquibmomin007.github.io/vacuum-rumba) https://aquibmomin007.github.io/vacuum-rumba
-```
