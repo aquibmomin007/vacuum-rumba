@@ -1,10 +1,10 @@
 
-<h1 align="center">Welcome to Vacuum Rumba App 👋</h1>
+<h1 align="center">Welcome to Vacuum Rumba App</h1>
 
-# CRA
+## CRA
 [Create React App](https://github.com/facebook/create-react-app) is used to create this Vacuum Rumba App.
 
-# Additional Setup
+#@ Additional Setup
 * Typescript support added
 * React-JSS is used for styling
 * Material UI library is used for Layout and Icons.
@@ -18,7 +18,7 @@
 https://github.com/aquibmomin007/vacuum-rumba
 ```
 
-## 1. Setup
+### 1. Setup
 - Install all dependencies
 ```bash
 npm install
@@ -44,20 +44,20 @@ or
 yarn test
 ```
 
-## 2. Accessing the App
+### 2. Accessing the App
 - You can run the app locally by
 ```bash
 npm run test
 or 
 yarn test
 ```
-### Local access URL
+#### Local access URL
 [Local URL](http://localhost:3000/vacuum-rumba) 
 ```bash
 http://localhost:3000/vacuum-rumba
 ```
 
-### Alternatively, I have also deployed the app to Github pages
+#### Alternatively, I have also deployed the app to Github pages
 [Git Page URL](https://aquibmomin007.github.io/vacuum-rumba) 
 ```bash
 https://aquibmomin007.github.io/vacuum-rumba
