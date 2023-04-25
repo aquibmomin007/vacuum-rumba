@@ -206,6 +206,10 @@ export const ActionBar = (props: TActionBarProps) => {
                                 },
                             },
                         },
+
+                        'MuiFormHelperText-root': {
+                            margin: '0 3px'
+                        },
                         
                         '& .MuiFormLabel-root': {
                             
