@@ -51,7 +51,13 @@ or
 yarn test
 ```
 ### Local access URL
-[Local URL](http://localhost:3000/vacuum-rumba) http://localhost:3000/vacuum-rumba
+[Local URL](http://localhost:3000/vacuum-rumba) 
+```bash
+http://localhost:3000/vacuum-rumba
+```
 
 ### Alternatively, I have also deployed the app to Github pages
-[Git Page URL](https://aquibmomin007.github.io/vacuum-rumba) https://aquibmomin007.github.io/vacuum-rumba
+[Git Page URL](https://aquibmomin007.github.io/vacuum-rumba) 
+```bash
+https://aquibmomin007.github.io/vacuum-rumba
+```
