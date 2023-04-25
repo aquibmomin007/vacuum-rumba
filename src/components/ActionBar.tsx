@@ -23,7 +23,8 @@ const useStyles = createUseStyles({
         position: 'relative',
         boxSizing: 'border-box',
         border: `1px solid ${CommonColors.text}`,
-        color: CommonColors.text
+        color: CommonColors.text,
+        overflowY: 'scroll'
     },
     formControl: {
         marginBottom: '0',
@@ -204,6 +205,10 @@ export const ActionBar = (props: TActionBarProps) => {
                                     borderColor: CommonColors.text
                                 },
                             },
+                        },
+
+                        '& .MuiFormHelperText-root': {
+                            margin: '0 3px'
                         },
                         
                         '& .MuiFormLabel-root': {
