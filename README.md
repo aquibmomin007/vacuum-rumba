@@ -55,5 +55,5 @@ http://localhost:3000/vacuum-rumba
 - Alternatively, I have also deployed the app to Github pages
 - Local access URL
 ```bash
-https://aquibmomin007.github.io/vacuum-rumba/
+https://aquibmomin007.github.io/vacuum-rumba
 ```
