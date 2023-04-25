@@ -6,9 +6,9 @@
 * React-JSS is used for styling
 * Material UI library is used for Layout and Icons.
 * React Final Form is used for form validation and activities
-* node installed (version >= 16.18)
-* npm installed (version >= 8.19)
-* yarn installed (version >= 1.22)
+* node installed (version >= 16.*)
+* npm installed (version >= 8.*)
+* yarn installed (version >= 1.*)
 
 
 ```bash
